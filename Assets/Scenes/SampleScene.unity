@@ -958,8 +958,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1399186261}
-  - component: {fileID: 1399186260}
-  - component: {fileID: 1399186262}
   - component: {fileID: 1399186264}
   - component: {fileID: 1399186263}
   - component: {fileID: 1399186265}
@@ -971,58 +969,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!212 &1399186260
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1399186259}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!224 &1399186261
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1042,42 +988,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!328 &1399186262
-VideoPlayer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1399186259}
-  m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 631d01f0cbb4f9b40bcabf74af4f1a82, type: 3}
-  m_TargetCameraAlpha: 1
-  m_TargetCamera3DLayout: 0
-  m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 0}
-  m_TimeReference: 0
-  m_TargetMaterialRenderer: {fileID: 0}
-  m_TargetMaterialProperty: <noninit>
-  m_RenderMode: 3
-  m_AspectRatio: 2
-  m_DataSource: 0
-  m_TimeUpdateMode: 2
-  m_PlaybackSpeed: 1
-  m_AudioOutputMode: 2
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
-  m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
-  m_SkipOnDrop: 1
-  m_Looping: 1
-  m_WaitForFirstFrame: 1
-  m_FrameReadyEventEnabled: 0
-  m_VideoShaders: []
 --- !u!114 &1399186263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1122,13 +1032,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d6555448572da40aecd1a46d937e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sampleTextPref: {fileID: 990059121078836462, guid: 7a35619148eb2e24fbd3b1793dcad888, type: 3}
   attackClips:
   - {fileID: 32900000, guid: 631d01f0cbb4f9b40bcabf74af4f1a82, type: 3}
   - {fileID: 32900000, guid: 69352af2c278c214db8dcee5f0d548ca, type: 3}
   - {fileID: 32900000, guid: 5365eb74e00d95d46bc044fb703e1be4, type: 3}
   - {fileID: 32900000, guid: 149c43304c979724c8940c1c824631ee, type: 3}
   guardClip: {fileID: 32900000, guid: 933e0d5a59b242241a0b33806b043f77, type: 3}
+  animatedSpritePref: {fileID: 8459795675083232266, guid: fa353ec3dd6f5fa46854d08ea5477c42, type: 3}
+  happyClip: {fileID: 32900000, guid: c9264cc9387becf45a659308cd3ac630, type: 3}
 --- !u!222 &1399186266
 CanvasRenderer:
   m_ObjectHideFlags: 0

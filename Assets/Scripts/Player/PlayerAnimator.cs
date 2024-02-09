@@ -3,46 +3,44 @@ using TMPro;
 using DG.Tweening;
 using UnityEngine.Video;
 using System.Collections.Generic;
+using System;
 
 public class PlayerAnimator : MonoBehaviour
 {
     private Animator _animator;
-    [SerializeField]TMP_Text sampleTextPref;
-    ObjectPool<TMP_Text> sampleTextPool; 
     [SerializeField]List<VideoClip> attackClips;
     [SerializeField]VideoClip guardClip;
-    VideoPlayer videoPlayer;
-    SpriteRenderer _spriteRenderer;
+    [SerializeField] AnimatedSprite animatedSpritePref;
+    [SerializeField] VideoClip happyClip;
+
+
+    ObjectPool<AnimatedSprite> animationPool;
+    
 
     private void Awake()
     {
-        videoPlayer = GetComponent<VideoPlayer>();
-        sampleTextPool = new ObjectPool<TMP_Text>(sampleTextPref, 5, transform.parent);
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteRenderer.color = Color.clear;
-        videoPlayer.Stop();
-    }
-
-    private void Update()
-    {
+        animationPool = new ObjectPool<AnimatedSprite>(animatedSpritePref, 10, transform);
     }
 
 
     public void TriggerHappy()
     {
+        var happyAnimation = animationPool.GetObject();
         //sampleTextをHappyにして、上へ浮かびながら明るい色で点滅した後、フェードアウト
-        var sampleText = sampleTextPool.GetObject();
-        sampleText.text = "Happy";
-        var startPosition = sampleText.transform.localPosition;
+        var startPosition = happyAnimation.spriteRenderer.transform.localPosition;
 
-        sampleText.transform.DOLocalMoveY(1.0f, 0.5f).SetEase(Ease.OutQuart);
-        sampleText.DOColor(Color.yellow, 0.5f).SetLoops(6, LoopType.Yoyo).SetEase(Ease.OutQuart);
-        sampleText.DOFade(0, 0.5f).SetDelay(3.0f).onComplete += () =>
+
+        happyAnimation.videoPlayer.clip = happyClip;
+        happyAnimation.videoPlayer.Play();
+        
+        happyAnimation.spriteRenderer.transform.DOLocalMoveY(1.0f, 0.5f).SetEase(Ease.OutQuart);
+        happyAnimation.spriteRenderer.DOColor(Color.yellow, 0.5f).SetLoops(6, LoopType.Yoyo).SetEase(Ease.OutQuart);
+        happyAnimation.spriteRenderer.DOFade(0, 0.5f).SetDelay(3.0f).onComplete += () =>
         {
-            sampleText.transform.localPosition = startPosition;
-            sampleText.color = Color.white;
-            sampleText.text = "Hello";
-            sampleText.gameObject.SetActive(false);
+            happyAnimation.spriteRenderer.transform.localPosition = startPosition;
+            happyAnimation.spriteRenderer.color = Color.white;
+            happyAnimation.videoPlayer.Stop();
+            happyAnimation.gameObject.SetActive(false);
         };
     }
 
@@ -50,14 +48,17 @@ public class PlayerAnimator : MonoBehaviour
     {
         //攻撃アニメーション
         //videoClipsの中からAttackLevelのものをVideoPlayerにセットして再生
-        videoPlayer.clip = attackClips[attackLevel];
-        _spriteRenderer.color = Color.white;
-        _spriteRenderer.DOFade(1, 0.1f).onComplete += () =>
+        var animatorSprite = animationPool.GetObject();
+
+        animatorSprite.videoPlayer.clip = attackClips[Math.Min(attackLevel, attackClips.Count - 1)];
+        animatorSprite.spriteRenderer.color = Color.white;
+        animatorSprite.spriteRenderer.DOFade(1, 0.1f).onComplete += () =>
         {
-            videoPlayer.DOPlay();
-            _spriteRenderer.DOFade(0, 2f).SetDelay(3f).onComplete += () =>
+            animatorSprite.videoPlayer.DOPlay();
+            animatorSprite.spriteRenderer.DOFade(0, 2f).SetDelay(3f).onComplete += () =>
             {
-                videoPlayer.Stop();
+                animatorSprite.videoPlayer.Stop();
+                animatorSprite.gameObject.SetActive(false);
             };
         };
     }
@@ -66,13 +67,16 @@ public class PlayerAnimator : MonoBehaviour
     {
         //Guardアニメーション
         //guardClipをVideoPlayerにセットして再生
-        videoPlayer.clip = guardClip;
-        _spriteRenderer.DOFade(1, 0.1f).onComplete += () =>
+        var guardAnimation = animationPool.GetObject();
+        guardAnimation.videoPlayer.clip = guardClip;
+        guardAnimation.spriteRenderer.color = Color.white;
+        guardAnimation.spriteRenderer.DOFade(1, 0.1f).onComplete += () =>
         {
-            videoPlayer.DOPlay();
-            _spriteRenderer.DOFade(0, 2f).SetDelay(3f).onComplete += () =>
+            guardAnimation.videoPlayer.DOPlay();
+            guardAnimation.spriteRenderer.DOFade(0, 2f).SetDelay(3f).onComplete += () =>
             {
-                videoPlayer.Stop();
+                guardAnimation.videoPlayer.Stop();
+                guardAnimation.gameObject.SetActive(false);
             };
         };
     }
