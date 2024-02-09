@@ -8,6 +8,14 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] EnemyData _enemyData;
     [SerializeField] Slider hpBar;
+    List<IEnemyListener> _listeners = new List<IEnemyListener>();
+    public void Register(IEnemyListener listener)
+    {
+        if (!_listeners.Contains(listener))
+        {
+            _listeners.Add(listener);
+        }
+    }
 
     int _nowHealth;
     public int nowHealth
@@ -21,8 +29,9 @@ public class Enemy : MonoBehaviour
         nowHealth = _enemyData.maxHealth;
     }
 
-    void Start()
+    public void SetEnemy(EnemyData data)
     {
+        _enemyData = data;
         ResetHealth();
     }
 
@@ -30,5 +39,22 @@ public class Enemy : MonoBehaviour
     {
         nowHealth -= damage;
         hpBar.value = (float)nowHealth / _enemyData.maxHealth;
+    }
+
+    IEnumerator EventSequencer()
+    {
+        foreach (var e in _enemyData.eventTimeLine)
+        {
+            yield return new WaitForSeconds(e.eventTimeMS / 1000);
+            foreach (var l in _listeners)
+            {
+                l.OnEvent(e.eventName);
+            }
+        }
+    }
+
+    public void StartMoving()
+    {
+        StartCoroutine(EventSequencer());
     }
 }

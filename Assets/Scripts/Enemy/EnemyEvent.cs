@@ -2,8 +2,8 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class EnemyEvent
+public struct EnemyEvent
 {
-    [SerializeField] EnemyEventName eventName;
-    [SerializeField] float eventTimeMS;
+    [SerializeField] public EnemyEventName eventName;
+    [SerializeField] public float eventTimeMS;
 }
