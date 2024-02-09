@@ -1126,10 +1126,9 @@ MonoBehaviour:
   attackClips:
   - {fileID: 32900000, guid: 631d01f0cbb4f9b40bcabf74af4f1a82, type: 3}
   - {fileID: 32900000, guid: 69352af2c278c214db8dcee5f0d548ca, type: 3}
-  - {fileID: 32900000, guid: c9264cc9387becf45a659308cd3ac630, type: 3}
   - {fileID: 32900000, guid: 5365eb74e00d95d46bc044fb703e1be4, type: 3}
   - {fileID: 32900000, guid: 149c43304c979724c8940c1c824631ee, type: 3}
-  guardClip: {fileID: 32900000, guid: 82bf416fa6f4e464786905950cdc4e37, type: 3}
+  guardClip: {fileID: 32900000, guid: 933e0d5a59b242241a0b33806b043f77, type: 3}
 --- !u!222 &1399186266
 CanvasRenderer:
   m_ObjectHideFlags: 0

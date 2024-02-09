@@ -8,6 +8,11 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] EnemyData _enemyData;
     [SerializeField] Slider hpBar;
+
+    public EnemyData enemyData
+    {
+        get { return _enemyData; }
+    }
     List<IEnemyListener> _listeners = new List<IEnemyListener>();
     public void Register(IEnemyListener listener)
     {

@@ -20,3 +20,4 @@ MonoBehaviour:
     eventTimeMS: 3000
   - eventName: 3
     eventTimeMS: 0
+  _damageList: 000000000a0000001400000064000000

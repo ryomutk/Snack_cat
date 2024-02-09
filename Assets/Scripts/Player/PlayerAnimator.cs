@@ -51,6 +51,7 @@ public class PlayerAnimator : MonoBehaviour
         //攻撃アニメーション
         //videoClipsの中からAttackLevelのものをVideoPlayerにセットして再生
         videoPlayer.clip = attackClips[attackLevel];
+        _spriteRenderer.color = Color.white;
         _spriteRenderer.DOFade(1, 0.1f).onComplete += () =>
         {
             videoPlayer.DOPlay();

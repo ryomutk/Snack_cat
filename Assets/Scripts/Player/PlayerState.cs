@@ -1,7 +1,8 @@
-public enum PlayerState
+public enum PlayerAction
 {
     none,
     idle,
     guard,
+    happy,
     attack
 }

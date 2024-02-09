@@ -18,6 +18,14 @@ public class InputSystem : MonoBehaviour
         }
     }
 
+    public void Unregister(IInputListener listener)
+    {
+        if(listeners.Contains(listener))
+        {
+            listeners.Remove(listener);
+        }
+    }
+
     private void OnInput(KeyEvent keyEvent)
     {
         foreach (var listener in listeners)

@@ -7,6 +7,7 @@ public class EnemyData:ScriptableObject
 {
     [SerializeField] int _maxHealth = 100;
     [SerializeField] List<EnemyEvent> _eventTimeLine;
+    [SerializeField] List<int> _damageList;
 
     public int maxHealth
     {
@@ -17,6 +18,11 @@ public class EnemyData:ScriptableObject
     public List<EnemyEvent> eventTimeLine
     {
         get { return _eventTimeLine; }
+    }
+
+    public List<int> damageList
+    {
+        get { return _damageList; }
     }
 
     
